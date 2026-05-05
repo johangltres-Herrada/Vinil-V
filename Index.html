@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vinil V — Hip Hop Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #E8271A;
+      --red-dark: #b51e14;
+      --cream: #F5F0E8;
+      --ink: #0D0D0D;
+      --ink-soft: #1A1A1A;
+      --ink-mid: #2E2E2E;
+      --gray-muted: #888;
+      --gray-border: #2a2a2a;
+      --gold: #C9A84C;
+      --surface: #141414;
+      --surface-raised: #1c1c1c;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--ink);
+      color: var(--cream);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: relative;
+      overflow: hidden;
+      background: var(--ink-soft);
+      border-bottom: 1px solid var(--gray-border);
+      padding: 0 48px;
+    }
+
+    .header-tape {
+      background: var(--red);
+      color: white;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      padding: 6px 0;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .tape-inner {
+      display: inline-block;
+      animation: marquee 22s linear infinite;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .header-body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 0;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: clamp(64px, 8vw, 120px);
+      line-height: 0.9;
+      color: var(--cream);
+      letter-spacing: 0.02em;
+    }
+
+    .brand-name span {
+      color: var(--red);
+    }
+
+    .brand-tagline {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+      padding-left: 3px;
+    }
+
+    .header-deco {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .vinyl-icon {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--ink-mid);
+      border: 1px solid var(--gray-border);
+      position: relative;
+      animation: spin 8s linear infinite;
+      flex-shrink: 0;
+    }
+
+    .vinyl-icon::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      background: repeating-radial-gradient(circle, #1f1f1f 0px, #252525 1px, #1a1a1a 2px, #222 3px);
+    }
+
+    .vinyl-icon::after {
+      content: '';
+      position: absolute;
+      inset: 38px;
+      border-radius: 50%;
+      background: var(--red);
+      border: 2px solid #333;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .header-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    /* ── NAV STRIP ── */
+    .nav-strip {
+      background: var(--surface);
+      border-bottom: 1px solid var(--gray-border);
+      padding: 0 48px;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      height: 44px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .nav-item {
+      color: var(--gray-muted);
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+
+    .nav-item:hover, .nav-item.active { color: var(--cream); }
+
+    .nav-sep { color: var(--gray-border); }
+
+    /* ── MAIN LAYOUT ── */
+    .main-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 48px;
+      align-items: start;
+    }
+
+    /* ── CATALOG ── */
+    .catalog {
+      padding: 40px 40px 80px 0;
+      border-right: 1px solid var(--gray-border);
+    }
+
+    .catalog-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 36px;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      color: var(--cream);
+    }
+
+    /* ── FILTER ── */
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border: 1px solid var(--gray-border);
+      background: transparent;
+      color: var(--gray-muted);
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--cream);
+      color: var(--cream);
+      background: transparent;
+    }
+
+    .filter-btn.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: white;
+    }
+
+    /* ── PRODUCT GRID ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: var(--surface-raised);
+      border: 1px solid var(--gray-border);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      border-color: #444;
+    }
+
+    .product-card.added {
+      border-color: var(--red);
+    }
+
+    .product-img-wrap {
+      position: relative;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.05);
+    }
+
+    .product-region {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      background: rgba(0,0,0,0.75);
+      color: var(--gold);
+      border-radius: 2px;
+    }
+
+    .product-info {
+      padding: 12px 14px 14px;
+    }
+
+    .product-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .product-format {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--gray-muted);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .product-price {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .btn-add {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      background: var(--red);
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+
+    .btn-add:hover { background: var(--red-dark); }
+
+    /* empty state */
+    .empty-state {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--gray-muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── CART SIDEBAR ── */
+    .cart-sidebar {
+      padding: 40px 0 80px 36px;
+      position: sticky;
+      top: 20px;
+    }
+
+    .cart-box {
+      background: var(--surface);
+      border: 1px solid var(--gray-border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .cart-header {
+      background: var(--surface-raised);
+      border-bottom: 1px solid var(--gray-border);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cart-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+
+    .cart-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      background: var(--red);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 20px;
+      min-width: 26px;
+      text-align: center;
+    }
+
+    .cart-items {
+      padding: 16px 20px;
+      min-height: 120px;
+      max-height: 340px;
+      overflow-y: auto;
+    }
+
+    .cart-empty {
+      color: var(--gray-muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .cart-item:last-child { border-bottom: none; }
+
+    .ci-left { flex: 1; min-width: 0; }
+
+    .ci-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      color: var(--cream);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ci-detail {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--gray-muted);
+      margin-top: 3px;
+    }
+
+    .ci-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .ci-price {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .ci-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-btn {
+      width: 20px;
+      height: 20px;
+      background: var(--gray-border);
+      border: none;
+      color: var(--cream);
+      cursor: pointer;
+      border-radius: 2px;
+      font-size: 12px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.1s;
+      padding: 0;
+    }
+
+    .qty-btn:hover { background: #444; }
+
+    .qty-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      min-width: 16px;
+      text-align: center;
+    }
+
+    .cart-footer {
+      border-top: 1px solid var(--gray-border);
+      padding: 16px 20px;
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+
+    .cart-total-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-muted);
+    }
+
+    .cart-total-value {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+    }
+
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px;
+      background: #25D366;
+      border: none;
+      border-radius: 3px;
+      color: white;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-whatsapp:hover { background: #1ebe5d; }
+
+    .btn-whatsapp svg { flex-shrink: 0; }
+
+    /* ── BENEFITS ── */
+    .benefits-section {
+      background: var(--surface);
+      border-top: 1px solid var(--gray-border);
+      padding: 60px 48px;
+    }
+
+    .benefits-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .benefits-header {
+      margin-bottom: 40px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--gray-border);
+      border: 1px solid var(--gray-border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .benefit-card {
+      background: var(--surface-raised);
+      padding: 32px 28px;
+    }
+
+    .benefit-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--red);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .benefit-icon svg { width: 20px; height: 20px; }
+
+    .benefit-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      color: var(--cream);
+    }
+
+    .benefit-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--gray-muted);
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--ink-soft);
+      border-top: 1px solid var(--gray-border);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-brand span { color: var(--red); }
+
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--gray-muted);
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--surface-raised);
+      border: 1px solid var(--red);
+      color: var(--cream);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 12px 18px;
+      border-radius: 3px;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+      }
+      .catalog {
+        padding: 32px 0 40px;
+        border-right: none;
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .cart-sidebar {
+        padding: 32px 0 60px;
+        position: static;
+      }
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      .site-header, .nav-strip, .benefits-section, .site-footer {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-body { flex-direction: column; align-items: flex-start; }
+      .header-deco { flex-direction: row; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TAPE BANNER -->
+  <header class="site-header">
+    <div class="header-tape">
+      <span class="tape-inner">
+        &nbsp;&nbsp;VINIL V — HIP HOP SHOP &nbsp;✦&nbsp; BOOM BAP &nbsp;✦&nbsp; G-FUNK &nbsp;✦&nbsp; PRENSAJES DE ÉPOCA &nbsp;✦&nbsp; ENVÍOS A TODO COLOMBIA &nbsp;✦&nbsp; VINILOS ORIGINALES &nbsp;✦&nbsp; EAST COAST · WEST COAST &nbsp;✦&nbsp; COLECCIONISTAS BIENVENIDOS &nbsp;✦&nbsp;
+        &nbsp;&nbsp;VINIL V — HIP HOP SHOP &nbsp;✦&nbsp; BOOM BAP &nbsp;✦&nbsp; G-FUNK &nbsp;✦&nbsp; PRENSAJES DE ÉPOCA &nbsp;✦&nbsp; ENVÍOS A TODO COLOMBIA &nbsp;✦&nbsp; VINILOS ORIGINALES &nbsp;✦&nbsp; EAST COAST · WEST COAST &nbsp;✦&nbsp; COLECCIONISTAS BIENVENIDOS &nbsp;✦&nbsp;
+      </span>
+    </div>
+
+    <div class="header-body">
+      <div class="brand">
+        <div class="brand-name">Vinil<span>V</span></div>
+        <div class="brand-tagline">Hip Hop Shop &mdash; Vinilos para Coleccionistas</div>
+      </div>
+      <div class="header-deco">
+        <div class="vinyl-icon"></div>
+        <div class="header-badge">Est. Colombia</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="nav-strip">
+    <div class="nav-inner">
+      <div class="nav-dot"></div>
+      <span class="nav-item active" data-filter="todos">Todo el catálogo</span>
+      <span class="nav-sep">/</span>
+      <span class="nav-item" data-filter="east">East Coast</span>
+      <span class="nav-sep">/</span>
+      <span class="nav-item" data-filter="west">West Coast</span>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main-layout">
+
+    <!-- CATALOG -->
+    <section class="catalog">
+      <div class="catalog-header">
+        <div>
+          <div class="section-label">Colección disponible</div>
+          <div class="section-title">Catálogo</div>
+        </div>
+        <div class="filter-row" id="filter-row">
+          <button class="filter-btn active" data-filter="todos">Todos</button>
+          <button class="filter-btn" data-filter="east">East Coast</button>
+          <button class="filter-btn" data-filter="west">West Coast</button>
+        </div>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+    </section>
+
+    <!-- CART -->
+    <aside class="cart-sidebar">
+      <div class="cart-box">
+        <div class="cart-header">
+          <div class="cart-title">Tu Carrito</div>
+          <div class="cart-badge" id="cart-count">0</div>
+        </div>
+        <div class="cart-items" id="cart-items">
+          <div class="cart-empty">Ningún vinilo seleccionado.</div>
+        </div>
+        <div class="cart-footer">
+          <div class="cart-total-row">
+            <span class="cart-total-label">Total a pagar</span>
+            <span class="cart-total-value" id="cart-total">$0</span>
+          </div>
+          <button class="btn-whatsapp" id="btn-whatsapp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Finalizar por WhatsApp
+          </button>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- BENEFITS -->
+  <section class="benefits-section">
+    <div class="benefits-inner">
+      <div class="benefits-header">
+        <div class="section-label">Por qué elegirnos</div>
+        <div class="section-title">El sello Vinil V</div>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <div class="benefit-title">Prensajes Originales</div>
+          <div class="benefit-text">Cada vinilo es verificado antes de listarse. Ofrecemos prensajes de época y reediciones oficiales, siempre con el audio que merece el hip hop clásico.</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12H19M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+          <div class="benefit-title">Envíos Seguros</div>
+          <div class="benefit-text">Empacamos con protección especializada para vinilos y hacemos seguimiento en tiempo real. Llegamos a todo el territorio nacional sin importar la ciudad.</div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <div class="benefit-title">Curaduría Experta</div>
+          <div class="benefit-text">Solo seleccionamos lo mejor del Boom Bap de Nueva York y el G-Funk de Los Ángeles. Cada pieza en el catálogo es un título que no puede faltar en una buena colección.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-brand">Vinil<span>V</span></div>
+    <div class="footer-copy">© 2025 Vinil V — Hip Hop Shop Colombia</div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const productos = [
+      { id: 1, nombre: "Gang Starr", precio: 120000, categoria: "east", formato: "LP · 33⅓ rpm", img: "https://m.media-amazon.com/images/I/91lRV0KY82L._AC_UY218_.jpg" },
+      { id: 2, nombre: "Wu Tang Clan", precio: 90000, categoria: "east", formato: "LP · 33⅓ rpm", img: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSx657EkLX4o8UD-Qz_lsU75_9JwNOWwgnWPkwa5PdbM1DlzP7Lmgf-oD86QY3EjxV8tRpivl4j7sTIvYwa5Arv0R6fcoP7it0tIGIXemZVVvxyw6UeYngYQvs" },
+      { id: 3, nombre: "Mobb Deep", precio: 110000, categoria: "east", formato: "LP · 33⅓ rpm", img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQY21wStcYr1DY2Bdgi9QJYsCaJnKyu_vcLSbIedCCl4I-53_n6EJAM1v7WN4hUOmKyKUebRSoUSdvhXFdr5VVBy10Rce1USA" },
+      { id: 4, nombre: "Dr. Dre", precio: 95000, categoria: "west", formato: "LP · 33⅓ rpm", img: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQBdzgHEhQ6xRIBGnBdhl2u5a46V8w_IjBcfBqQHeDLgXL8pjVKjEP5Dyx47BnEvCZn8jhKlzPQTkGeZWU80CzJqpLTX7FRtA" },
+      { id: 5, nombre: "Snoop Dogg", precio: 100000, categoria: "west", formato: "LP · 33⅓ rpm", img: "https://http2.mlstatic.com/D_NQ_NP_961927-MLU69940096131_062023-O.webp" }
+    ];
+
+    let carrito = new Map();
+    let filtroActual = "todos";
+
+    const gridEl = document.getElementById("product-grid");
+    const cartItemsEl = document.getElementById("cart-items");
+    const cartCountEl = document.getElementById("cart-count");
+    const cartTotalEl = document.getElementById("cart-total");
+    const toastEl = document.getElementById("toast");
+
+    function fCOP(v) {
+      return new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", minimumFractionDigits: 0 }).format(v);
+    }
+
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(toastEl._t);
+      toastEl._t = setTimeout(() => toastEl.classList.remove("show"), 2200);
+    }
+
+    function regionLabel(cat) {
+      return cat === "east" ? "East Coast · NY" : "West Coast · LA";
+    }
+
+    function renderProducts(lista) {
+      if (!lista.length) {
+        gridEl.innerHTML = '<div class="empty-state">Sin resultados para este filtro.</div>';
+        return;
+      }
+      gridEl.innerHTML = lista.map(p => `
+        <div class="product-card${carrito.has(p.id) ? ' added' : ''}" id="card-${p.id}">
+          <div class="product-img-wrap">
+            <img src="${p.img}" alt="${p.nombre}" onerror="this.src='https://placehold.co/400x400/1a1a1a/888?text=Vinilo'">
+            <div class="product-region">${regionLabel(p.categoria)}</div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">${p.nombre}</div>
+            <div class="product-format">${p.formato}</div>
+            <div class="product-footer">
+              <span class="product-price">${fCOP(p.precio)}</span>
+              <button class="btn-add" data-id="${p.id}">+ Agregar</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      gridEl.querySelectorAll(".btn-add").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          agregar(parseInt(btn.dataset.id));
+        });
+      });
+    }
+
+    function agregar(id) {
+      const p = productos.find(x => x.id === id);
+      if (carrito.has(id)) {
+        carrito.get(id).cantidad++;
+      } else {
+        carrito.set(id, { ...p, cantidad: 1 });
+      }
+      const card = document.getElementById("card-" + id);
+      if (card) card.classList.add("added");
+      toast(`${p.nombre} agregado al carrito`);
+      renderCart();
+    }
+
+    function cambiarCantidad(id, delta) {
+      if (!carrito.has(id)) return;
+      const item = carrito.get(id);
+      item.cantidad += delta;
+      if (item.cantidad <= 0) carrito.delete(id);
+      const card = document.getElementById("card-" + id);
+      if (card) card.classList.toggle("added", carrito.has(id));
+      renderCart();
+    }
+
+    function renderCart() {
+      let total = 0, totalItems = 0;
+      if (!carrito.size) {
+        cartItemsEl.innerHTML = '<div class="cart-empty">Ningún vinilo seleccionado.</div>';
+        cartCountEl.textContent = "0";
+        cartTotalEl.textContent = "$0";
+        return;
+      }
+      let html = '';
+      carrito.forEach((p) => {
+        const sub = p.precio * p.cantidad;
+        total += sub;
+        totalItems += p.cantidad;
+        html += `
+          <div class="cart-item">
+            <div class="ci-left">
+              <div class="ci-name">${p.nombre}</div>
+              <div class="ci-detail">${fCOP(p.precio)} c/u</div>
+            </div>
+            <div class="ci-right">
+              <div class="ci-price">${fCOP(sub)}</div>
+              <div class="ci-controls">
+                <button class="qty-btn" data-id="${p.id}" data-delta="-1">−</button>
+                <span class="qty-num">${p.cantidad}</span>
+                <button class="qty-btn" data-id="${p.id}" data-delta="1">+</button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      cartItemsEl.innerHTML = html;
+      cartCountEl.textContent = totalItems;
+      cartTotalEl.textContent = fCOP(total);
+
+      cartItemsEl.querySelectorAll(".qty-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          cambiarCantidad(parseInt(btn.dataset.id), parseInt(btn.dataset.delta));
+        });
+      });
+    }
+
+    // FILTERS
+    function setFilter(val) {
+      filtroActual = val;
+      document.querySelectorAll(".filter-btn, .nav-item").forEach(el => {
+        el.classList.toggle("active", el.dataset.filter === val);
+      });
+      const lista = val === "todos" ? productos : productos.filter(p => p.categoria === val);
+      renderProducts(lista);
+    }
+
+    document.getElementById("filter-row").addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter-btn");
+      if (btn) setFilter(btn.dataset.filter);
+    });
+
+    document.querySelectorAll(".nav-item").forEach(el => {
+      el.addEventListener("click", () => setFilter(el.dataset.filter));
+    });
+
+    // WHATSAPP
+    document.getElementById("btn-whatsapp").addEventListener("click", () => {
+      if (!carrito.size) { toast("Tu carrito está vacío"); return; }
+      let msg = "¡Hola Vinil V! Quisiera pedir los siguientes vinilos:%0A%0A";
+      let total = 0;
+      carrito.forEach(p => {
+        const sub = p.precio * p.cantidad;
+        total += sub;
+        msg += `• ${p.nombre} × ${p.cantidad} — ${fCOP(sub)}%0A`;
+      });
+      msg += `%0A*TOTAL: ${fCOP(total)}*`;
+      window.open(`https://wa.me/573116929582?text=${msg}`, "_blank");
+    });
+
+    // INIT
+    renderProducts(productos);
+  </script>
+</body>
+</html>
